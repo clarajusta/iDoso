@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+ 
+using namespace std;
+ 
+int main() {
+  string word; // declarar a string que desejo buscar
+  cin >> word; //recebendo a string de entrada atribuida pelo usuário
+ 
+  //determinando o arquivo txt a ser lido
+  ifstream file; 
+  file.open("mytext2.txt");
+ 
+  string line; // declarando a linha
+ 
+  if(file.is_open()) { //abrir arquivo
+    while(getline(file, line)) { //ler linha do arquivo .txt
+      if(line.find(word, 0) != string::npos) { //buscar palavra
+        cout << line << endl; //printar a linha da palavra encontrada
+      }
+    }
+  }
+ 
+  return 0;
+}
+ 
