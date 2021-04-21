@@ -1,0 +1,23 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+// ler e printar cada linha no terminal
+
+//declarar uma variável string para armazenar cada linha que iremos ler
+
+using namespace std;
+int main () {
+
+    std::string line_; //variável string de nome line
+    fstream file_("mytext.txt"); //ler o arquivo
+    if(file_.is_open()){ ///ter a certeza de que o arquivo esta aberto. checar se esta aberto e retorna verdadeiro ou falso
+        while (getline(file_,line_)){// para ler linha por linha tem uma funçao na biblioteca string chamada getline, ler o nosso arquivo file_ e transformar na string line_ linha por linha
+            std::cout<<line_<< '\n';// printar as linhas: printar a line_ que é uma variável string e printar a próxima linha (quebra de linha)
+        }
+        file_.close ();//quando terminar de ler, preciso fechar o arquivo 
+    } 
+    else 
+    std::cout<<"o arquivo não esta aberto" << '\n';
+    std::cin.get();
+    return 0;
+}
