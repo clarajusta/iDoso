@@ -1,0 +1,7 @@
+# pastas de bibliotecas:
+__pycache__/
+Include/
+Lib/
+main/
+Scripts/
+
