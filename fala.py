@@ -24,6 +24,8 @@ def cria_audio(audio):
         playsound('audios/horario.mp3')
     if(audio == "Que dia é hoje"):
         playsound('audios/data_hoje.mp3')
+    if (audio == "Conte uma piada"):
+        playsound ('audios/piada.mp3')
     else:
         playsound('audios/nao_entendi.mp3')
 
