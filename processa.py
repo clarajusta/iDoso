@@ -3,6 +3,7 @@ from gtts import gTTS
 from playsound import playsound
 from datetime import datetime
 from respostas_datetime import datas
+from send_sms import enviar_sms
 
 agora = datetime.now()
 
@@ -16,8 +17,6 @@ def cria_audio(audio):
 
     print("Estou aprendendo o que você disse...")
     #Da play ao audio
-    if(lembrete_passo == 1)
-
     if(audio == "Bom dia"):
         playsound('audios/bom_dia.mp3')
     if(audio == "Que horas são"):
@@ -27,6 +26,9 @@ def cria_audio(audio):
         playsound('audios/data_hoje.mp3')
     if (audio == "Conte uma piada"):
         playsound ('audios/piada.mp3')
+    if (audio == "ativar contato de emergência"):
+        playsound ('audios/emergencia.mp3')
+        enviar_sms()
     else:
         playsound('audios/nao_entendi.mp3')
 
