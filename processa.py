@@ -9,7 +9,7 @@ agora = datetime.now()
 
 #Funcao responsavel por falar 
 def cria_audio(audio):
-    # mostrando a string de áudio que foi criada quando você falou
+    # mostrando a string de audio que foi criada quando você falou
     tts = gTTS(audio,lang='pt-br')
 
     #Salva o arquivo de audio com a string que foi falada (caso seja útil)

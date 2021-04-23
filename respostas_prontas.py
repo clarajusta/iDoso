@@ -15,7 +15,7 @@ tts.save('audios/nao_entendi.mp3')
 tts = gTTS('Bom dia, senhora! Espero que seu dia seja maravilhoso!', lang= 'pt-br')
 tts.save('audios/bom_dia.mp3')
 
-# Para a criação de um lembrete:
+# Para a criacao de um lembrete:
 # passo 1:
 tts = gTTS('Muito bem, do que você deseja se lembrar?', lang= 'pt-br')
 tts.save('audios/lembrete_passo1.mp3')
