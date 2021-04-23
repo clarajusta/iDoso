@@ -22,3 +22,7 @@ tts.save('audios/lembrete_passo1.mp3')
 # passo 2:
 tts = gTTS('Para quando é esse bilhete?', lang= 'pt-br')
 tts.save('audios/lembrete_passo2.mp3')
+
+# Para a String "Conte uma piada"
+tts = gTTS('Por que a velhinha não usa relógio? Porque ela é sem hora', lang= 'pt-br')
+tts.save('audios/piada.mp3')
