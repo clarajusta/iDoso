@@ -16,7 +16,8 @@ def cria_audio(audio):
 
     print("Estou aprendendo o que você disse...")
     #Da play ao audio
-    
+    if(lembrete_passo == 1)
+
     if(audio == "Bom dia"):
         playsound('audios/bom_dia.mp3')
     if(audio == "Que horas são"):

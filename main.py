@@ -1,5 +1,5 @@
 from ouve import ouvir_microfone
-from fala import cria_audio
+from processa import cria_audio
 
 frase = ouvir_microfone()
 
