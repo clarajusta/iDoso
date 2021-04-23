@@ -7,3 +7,7 @@
     - *pip install SpeechRecognition*
     - *pip install pipwin*
     - *pipwin install pyaudio*
+    - *pip install twilio*
+    - *pip install google-api-python-client*
+    - *pip install google-auth-httplib2*
+    - *pip install google-auth-oauthlib*
