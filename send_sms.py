@@ -15,8 +15,8 @@ def enviar_sms():
     message = client.messages \
         .create(
             body='Número de emergência ativado!',
-            from_='+12053016152',
-            to='+5561986044291'
+            from_='Numero_dado_pela_conta_Twilio',
+            to='Número_registrado_na_conta_Twilio'
         )
 
     print(message.sid)
