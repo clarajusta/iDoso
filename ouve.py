@@ -1,8 +1,8 @@
 import speech_recognition as sr
 
-#Função para ouvir e reconhecer a fala
+#Funcao para ouvir e reconhecer a fala
 def ouvir_microfone():
-    #Habilita o microfone do usuário
+    #Habilita o microfone do usuario
     microfone = sr.Recognizer()
     
     #usando o microfone
@@ -19,7 +19,7 @@ def ouvir_microfone():
         
     try:
         
-        #Passa a variável para o algoritmo reconhecedor de padroes
+        #Passa a variavel para o algoritmo reconhecedor de padroes
         frase = microfone.recognize_google(audio,language='pt-BR')
         
         #Retorna a frase pronunciada

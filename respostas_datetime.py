@@ -1,16 +1,16 @@
 from gtts import gTTS
 from datetime import datetime
 
-# para as funções que dependem da data atual
+# para as funcoes que dependem da data atual
 def datas(agora):
-    # Para a String "Que horas são"
+    # Para a String "Que horas sao"
     horas = agora.strftime("%H")
     minutos = agora.strftime("%M")
     horario = "No momento são " + horas + " horas e " + minutos + "minutos"
     tts = gTTS(horario, lang= 'pt-br')
     tts.save('audios/horario.mp3')
 
-    # Para dizer "que dia é hoje?":
+    # Para dizer "que dia e hoje?":
     # TODO: acrescetar dia da semana
     dia = agora.strftime("%d")
     mes_num = agora.strftime("%m")
