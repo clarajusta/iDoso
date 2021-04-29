@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 import speech_recognition as sr
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 #Funcao para ouvir e reconhecer a fala
 def ouvir_microfone():
@@ -23,10 +27,11 @@ def ouvir_microfone():
         frase = microfone.recognize_google(audio,language='pt-BR')
         
         #Retorna a frase pronunciada
+        
         print("Você disse: " + frase)
         
     #Se nao reconheceu o padrao de fala, exibe a mensagem
-    except sr.UnkownValueError:
+    except LookupError:
         print("Não entendi")
         
     return frase

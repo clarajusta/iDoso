@@ -1,7 +1,9 @@
-# pastas de bibliotecas:
+# pastas de bibliotecas a serem ignoradas no commit para o gitHub:
 __pycache__/
 Include/
 Lib/
 main/
 Scripts/
+env
+credenciais.py
 

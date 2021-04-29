@@ -1,14 +1,13 @@
-
-# Download the helper library from https://www.twilio.com/docs/python/install
+# -*- coding: utf-8 -*-
 import os
 from twilio.rest import Client
+from credenciais import Account_SID, Auth_Token
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-
-# Your Account Sid and Auth Token from twilio.com/console
-# and set the environment variables. See http://twil.io/secure
-# Não é recomendado colocar essas informações no GitHub
-account_sid = "Account_SID"
-auth_token = "Auth_Token"
+account_sid = Account_SID
+auth_token = Auth_Token
 client = Client(account_sid, auth_token)
 
 def enviar_sms():
@@ -20,4 +19,4 @@ def enviar_sms():
         )
 
     print(message.sid)
-    return print("Mensagem enviada!")
+    print("Mensagem enviada!")

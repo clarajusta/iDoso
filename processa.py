@@ -1,9 +1,13 @@
+# -*- coding: utf-8 -*-
 import speech_recognition as sr
 from gtts import gTTS
 from playsound import playsound
 from datetime import datetime
 from respostas_datetime import datas
 from send_sms import enviar_sms
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 agora = datetime.now()
 
@@ -24,7 +28,7 @@ def cria_audio(audio):
         playsound('audios/horario.mp3')
     if(audio == "Que dia é hoje"):
         playsound('audios/data_hoje.mp3')
-    if (audio == "Conte uma piada"):
+    if (audio == "conte uma piada"):
         playsound ('audios/piada.mp3')
     if (audio == "ativar contato de emergência"):
         playsound ('audios/emergencia.mp3')

@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 from gtts import gTTS
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # Frases curtas:
 tts = gTTS('Entendido', lang= 'pt-br')

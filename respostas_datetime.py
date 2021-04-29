@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
 from gtts import gTTS
 from datetime import datetime
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # para as funcoes que dependem da data atual
 def datas(agora):
@@ -20,3 +24,4 @@ def datas(agora):
     data_hoje = "Hoje é o dia " + dia + " de " + mes + "do ano de " + ano
     tts = gTTS(data_hoje, lang= 'pt-br')
     tts.save('audios/data_hoje.mp3')
+
