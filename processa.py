@@ -3,7 +3,7 @@ import speech_recognition as sr
 from gtts import gTTS
 from playsound import playsound
 from datetime import datetime
-from respostas_datetime import datas
+from respostas_datetime import data, horas
 from send_sms import enviar_sms
 import sys
 reload(sys)
@@ -24,15 +24,19 @@ def cria_audio(audio):
     if(audio == "Bom dia"):
         playsound('audios/bom_dia.mp3')
     if(audio == "Que horas são"):
-        datas(agora)
+        horas(agora)
         playsound('audios/horario.mp3')
     if(audio == "Que dia é hoje"):
+        data(agora)
         playsound('audios/data_hoje.mp3')
     if (audio == "conte uma piada"):
         playsound ('audios/piada.mp3')
     if (audio == "ativar contato de emergência"):
         playsound ('audios/emergencia.mp3')
         enviar_sms()
+    if (audio == "Quem é você"):
+        playsound ('audios/luba.mp3')
+
 
     
 #tts = gTTS('Oi, eu sou a Rosie', lang= 'pt-br')
