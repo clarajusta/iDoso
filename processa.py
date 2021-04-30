@@ -33,8 +33,6 @@ def cria_audio(audio):
     if (audio == "ativar contato de emergência"):
         playsound ('audios/emergencia.mp3')
         enviar_sms()
-    else:
-        playsound('audios/nao_entendi.mp3')
 
     
 #tts = gTTS('Oi, eu sou a Rosie', lang= 'pt-br')

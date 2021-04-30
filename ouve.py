@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import speech_recognition as sr
 import sys
+from playsound import playsound
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -16,6 +17,7 @@ def ouvir_microfone():
         microfone.adjust_for_ambient_noise(source)
         
         #Frase para o usuario dizer algo
+        playsound('audios/chamou.mp3')
         print("Diga alguma coisa: ")
         
         #Armazena o que foi dito numa variavel
@@ -31,7 +33,9 @@ def ouvir_microfone():
         print("Você disse: " + frase)
         
     #Se nao reconheceu o padrao de fala, exibe a mensagem
-    except LookupError:
+    except sr.UnknownValueError:
+        playsound('audios/nao_entendi.mp3')
+        frase = "Não entendi"
         print("Não entendi")
         
     return frase

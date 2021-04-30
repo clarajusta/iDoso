@@ -34,3 +34,7 @@ tts.save('audios/piada.mp3')
 #Enviando mensagem para contato de emergencia
 tts = gTTS('Enviando mensagem para seu contato de emergência', lang= 'pt-br')
 tts.save('audios/emergencia.mp3')
+
+#Chamou?
+tts = gTTS('Chamou?', lang= 'pt-br')
+tts.save('audios/chamou.mp3')
