@@ -6,6 +6,7 @@ from datetime import datetime
 from respostas_datetime import data, horas
 from send_sms import enviar_sms
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -36,6 +37,8 @@ def cria_audio(audio):
         enviar_sms()
     if (audio == "Quem é você"):
         playsound ('audios/luba.mp3')
+
+    
 
 
     

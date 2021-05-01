@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import speech_recognition as sr
 import sys
+import speech_recognition as sr
 from playsound import playsound
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 

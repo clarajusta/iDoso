@@ -3,7 +3,6 @@ from apiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 
-
 try:
   import argparse
   flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -16,7 +15,7 @@ except ImportError:
   creds = store.get()
   if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets ('client_secret.json', SCOPES)
-    creds = tools.run_flow(flow, store, flags) \
+    creds = tools.run_flow(flow, store, flags)
           if flags else tools.run(flow,store)
 CAL = build('calendar', 'v3', credentials=creds)
 
