@@ -40,5 +40,13 @@ tts = gTTS('Chamou?', lang= 'pt-br')
 tts.save('audios/chamou.mp3')
 
 #Quem é você?
-tts = gTTS('Eu sou Luba, a sua assistente pessoal. Estou aqui para te ajudar no que puder!', lang= 'pt-br')
-tts.save('audios/luba.mp3')
+tts = gTTS('Eu sou a Mara, a sua assistente pessoal. Estou aqui para te ajudar no que puder!', lang= 'pt-br')
+tts.save('audios/mara.mp3')
+
+#Tudo bem com você?
+tts = gTTS('Eu estou Maravilhosa, e você, como está?', lang= 'pt-br')
+tts.save('audios/estou_bem.mp3')
+
+#Eu estou bem
+tts = gTTS('Isso é muito bom!', lang= 'pt-br')
+tts.save('audios/muito_bom.mp3')

@@ -37,6 +37,10 @@ def cria_audio(audio):
         enviar_sms()
     if (audio == "Quem é você"):
         playsound ('audios/luba.mp3')
+    if (audio == "como você está"):
+        playsound ('audios/estou_bem.mp3')
+    if (audio == "Eu estou bem"):
+        playsound ('audios/muito_bom.mp3')
 
     
 

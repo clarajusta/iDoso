@@ -6,4 +6,5 @@ main/
 Scripts/
 env
 credenciais.py
+*.pyc
 
