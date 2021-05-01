@@ -23,10 +23,10 @@ def ouvir_microfone():
         frase = microfone.recognize_google(audio,language='pt-BR')
         
         #Retorna a frase pronunciada
-        print("Você disse: " + frase)
+        print("Voce disse: " + frase)
         
     #Se nao reconheceu o padrao de fala, exibe a mensagem
     except sr.UnkownValueError:
-        print("Não entendi")
+        print("Nao entendi")
         
     return frase
