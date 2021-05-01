@@ -1,6 +1,38 @@
-from ouve import ouvir_microfone
-from processa import cria_audio
+# -*- coding: utf-8 -*-
+import sys
+import speech_recognition as sr
+import executa
 
-frase = ouvir_microfone()
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-cria_audio(frase)
+while(True):
+#Funcao para ouvir e reconhecer a fala
+    #Habilita o microfone do usuario
+    microfone = sr.Recognizer()
+    
+    #usando o microfone
+    with sr.Microphone() as source:
+        
+        #Chama um algoritmo de reducao de ruidos no som
+        microfone.adjust_for_ambient_noise(source)
+        
+        #Armazena o que foi dito numa variavel
+        audio = microfone.listen(source)
+        
+    try:
+        
+        #Passa a variavel para o algoritmo reconhecedor de padroes
+        frase = microfone.recognize_google(audio,language='pt-BR')
+        
+        #Retorna a frase pronunciada
+        print(frase)
+        if "Mara" in frase:
+            execfile('executa.py')
+        
+
+    #Se nao reconheceu o padrao de fala, exibe a mensagem
+    except sr.UnknownValueError:
+        
+        print("...")
+        

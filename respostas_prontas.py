@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 from gtts import gTTS
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # Frases curtas:
 tts = gTTS('Entendido', lang= 'pt-br')
@@ -24,9 +28,17 @@ tts = gTTS('Para quando é esse bilhete?', lang= 'pt-br')
 tts.save('audios/lembrete_passo2.mp3')
 
 # Para a String "Conte uma piada"
-tts = gTTS('Por que a velhinha não usa relógio? Porque ela é sem hora', lang= 'pt-br')
+tts = gTTS('Você sabe por que a velhinha não usa relógio? É porque ela é sem hora', lang= 'pt-br')
 tts.save('audios/piada.mp3')
 
 #Enviando mensagem para contato de emergencia
 tts = gTTS('Enviando mensagem para seu contato de emergência', lang= 'pt-br')
 tts.save('audios/emergencia.mp3')
+
+#Chamou?
+tts = gTTS('Chamou?', lang= 'pt-br')
+tts.save('audios/chamou.mp3')
+
+#Quem é você?
+tts = gTTS('Eu sou Luba, a sua assistente pessoal. Estou aqui para te ajudar no que puder!', lang= 'pt-br')
+tts.save('audios/luba.mp3')
