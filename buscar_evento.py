@@ -2,8 +2,8 @@ from apiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 	
 scopes = ['https://www.googleapis.com/auth/calendar']
-#verificar a ocrrencia de envento em um periodo de 2 min a partir do horário atual
-#printar o horário atual e o horário atual + 2min
+#verificar a ocrrencia de envento em um periodo de 1 min a partir do horário atual
+#printar o horário atual e o horário atual + 1min
 def main():
 
     import pickle
@@ -22,7 +22,9 @@ def main():
     timeMin = timeMin.isoformat()
     timeMax = now + timedelta(minutes=2)
     timeMax = timeMax.isoformat()
-
+    #if e else #funcao da checagem e criacao do lembrete funcao diferente
+#primeiro checar se em evento no dia
+#se tiver, checar na h
     print('Listar data e hora atual e outra data somando 2 min')
     events_result = service.events().list(calendarId='primary', timeMin=timeMin,
                                         timeMax=timeMax, singleEvents=True,
