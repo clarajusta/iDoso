@@ -23,11 +23,8 @@ tts.save('audios/bom_dia.mp3')
 
 # Para a criacao de um lembrete:
 # passo 1:
-tts = gTTS('Muito bem, do que você deseja se lembrar?', lang= 'pt-br')
+tts = gTTS('Ativando a função do lembrete', lang= 'pt-br')
 tts.save('audios/lembrete_passo1.mp3')
-# passo 2:
-tts = gTTS('Para quando é esse bilhete?', lang= 'pt-br')
-tts.save('audios/lembrete_passo2.mp3')
 
 # Para a String "Conte uma piada"
 tts = gTTS('Você sabe por que a velhinha não usa relógio? É porque ela é sem hora', lang= 'pt-br')

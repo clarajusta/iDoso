@@ -1,10 +1,12 @@
 import threading
+import multiprocessing as mp
 import sys, pyaudio, os
 import speech_recognition as sr
 from playsound import playsound
 from gtts import gTTS
 from datetime import datetime
 from respostas_datetime import data, horas
+from agenda import agenda
 # -*- coding: utf-8 -*-
 
 #reload(sys)
@@ -12,11 +14,14 @@ from respostas_datetime import data, horas
 
 # TODO: adicionar a thread do calendário para ocorrer de maneira paralela às threads
 agora = datetime.now()
+frase = []
 mara = False
+lembrete = False
 
 def processa_funcao(audio):
     global mara
     global agora
+    global lembrete
     # mostrando a string de audio que foi criada quando você falou
     tts = gTTS(audio,lang='pt-br')
 
@@ -39,12 +44,16 @@ def processa_funcao(audio):
         playsound ('audios/mara.mp3')
     if ("como você está" in audio.lower()):
         playsound ('audios/estou_bem.mp3')
+    if ("criar um lembrete" in audio.lower()):
+        lembrete = True
+        print("NOVO VALOR DE LEMBRETE:", lembrete)
 
     mara = False
     print("MARA terminou de processar: ", mara)
     main_task()
 
 def frases(lock):
+    global frase
     global mara
     lock.acquire()
     print("MARA(frases): ", mara)
@@ -68,7 +77,6 @@ def frases(lock):
                 print("MARA sendo processada: ", mara)
                 processa_funcao(frase)
                 break
-
         except sr.UnknownValueError:
             if(mara is True):
                 print("MARA sendo processada(com error): ", mara)
@@ -81,13 +89,30 @@ def frases(lock):
 
     lock.release()
 
+def lembrete_func(lock):
+    lock.acquire()
+    print("Executando função para criar um lembrete")
+    # chamar aqui a função da agenda
+    agenda()
+    lock.release()
+
 def main_task():
+    global mara
+    global lembrete
     lock = threading.Lock()
 
     escutando = threading.Thread(target=frases, args=(lock,)) # procurar "Mara"
     funcao = threading.Thread(target=frases, args=(lock,)) # ouvir a função
+    lembrando = threading.Thread(target=lembrete_func, args=(lock,)) # função de agenda ativada
+
+    print("______Lembrete",lembrete)
+    if(lembrete is True):
+        playsound('audios/lembrete_passo1.mp3')
+        lembrando.start()
+        lembrando.join()
+
     if(mara is False):
-        print("mobo escuta")
+        print("modo escuta")
         escutando.start()
         escutando.join()
     if(mara is True):
@@ -95,6 +120,7 @@ def main_task():
         playsound('audios/chamou.mp3')
         funcao.start()
         funcao.join()
+
 
 if __name__ == "__main__":
     main_task()
