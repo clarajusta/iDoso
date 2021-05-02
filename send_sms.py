@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 from twilio.rest import Client
-from credenciais import Account_SID, Auth_Token
+#from credenciais import Account_SID, Auth_Token
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 account_sid = Account_SID
 auth_token = Auth_Token
