@@ -16,5 +16,5 @@
     - *sudo apt-get install flac*
     - *sudo apt-get install gstreamer*
 
-* **Para Rodar o programa:**
-    -*gcc -lpython2.7 -pthread entrada.c -o entrada*
+* **Para Criar o executável em C:**
+    -*gcc -lpython2.7 -pthread Mara.c -o Mara*

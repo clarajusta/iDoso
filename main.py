@@ -79,10 +79,9 @@ def frases(lock):
                 break
         except sr.UnknownValueError:
             if(mara is True):
-                print("MARA sendo processada(com error): ", mara)
                 playsound ('audios/nao_entendi.mp3')
                 mara = False
-                break
+                print("MARA sendo processada(com error): ", mara)
 
             else:
                 print("...")
@@ -93,8 +92,9 @@ def lembrete_func(lock):
     global lembrete
     lock.acquire()
     print("Executando função para criar um lembrete")
-    # chamar aqui a função da agenda
+    # chama a função agenda para salvar o novo áudio falando os lembretes do dia
     agenda()
+    # Executa o áudio com o nome X, criado em agenda
     lembrete = False
     lock.release()
 

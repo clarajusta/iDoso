@@ -7,4 +7,4 @@ Scripts/
 env
 credenciais.py
 *.pyc
-
+*.pkl
