@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def agenda():
     print("agenda sendo executada")
@@ -8,4 +13,4 @@ def agenda():
         i += 1
         print(i)
     
-    return print("executada")
+    print("Função executada")

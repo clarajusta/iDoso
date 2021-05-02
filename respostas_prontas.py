@@ -1,10 +1,10 @@
-
+# -*- coding: utf-8 -*-
 from gtts import gTTS
 import sys
 
-# -*- coding: utf-8 -*-
-#reload(sys)
-#sys.setdefaultencoding('utf-8')
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # Frases curtas:
 tts = gTTS('Entendido', lang= 'pt-br')
@@ -39,7 +39,7 @@ tts = gTTS('Chamou?', lang= 'pt-br')
 tts.save('audios/chamou.mp3')
 
 #Quem é você?
-tts = gTTS('Eu sou a Ágata, a sua assistente pessoal. Estou aqui para te ajudar no que puder!', lang= 'pt-br')
+tts = gTTS('Eu sou a Mara, a sua assistente pessoal. Estou aqui para te ajudar no que puder!', lang= 'pt-br')
 tts.save('audios/mara.mp3')
 
 #Tudo bem com você?

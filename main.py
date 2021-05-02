@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import threading
 import multiprocessing as mp
 import sys, pyaudio, os
@@ -7,10 +8,9 @@ from gtts import gTTS
 from datetime import datetime
 from respostas_datetime import data, horas
 from agenda import agenda
-# -*- coding: utf-8 -*-
 
-#reload(sys)
-#sys.setdefaultencoding('utf-8')
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # TODO: adicionar a thread do calendário para ocorrer de maneira paralela às threads
 agora = datetime.now()
@@ -90,10 +90,12 @@ def frases(lock):
     lock.release()
 
 def lembrete_func(lock):
+    global lembrete
     lock.acquire()
     print("Executando função para criar um lembrete")
     # chamar aqui a função da agenda
     agenda()
+    lembrete = False
     lock.release()
 
 def main_task():

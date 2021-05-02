@@ -8,8 +8,8 @@ import urllib3
 urllib3.disable_warnings()
 
 #habilitar os caracteres especiais nas strings
-#reload(sys)
-#sys.setdefaultencoding('utf-8')
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # para as funcoes que dependem da data atual
 def horas(agora):
