@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from twilio.rest import Client
-#from credenciais import Account_SID, Auth_Token
+#from credenciais import Account_SID, Auth_Token, Telefone_que_envia, Telefone_que_recebe
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')

@@ -8,3 +8,4 @@ env
 credenciais.py
 *.pyc
 *.pkl
+*.json
