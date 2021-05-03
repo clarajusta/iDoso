@@ -20,12 +20,12 @@ def main():
 
     timeMin = now
     timeMin = timeMin.isoformat()
-    timeMax = now + timedelta(minutes=2)
+    timeMax = now + timedelta(minutes=1)
     timeMax = timeMax.isoformat()
     #if e else #funcao da checagem e criacao do lembrete funcao diferente
 #primeiro checar se em evento no dia
 #se tiver, checar na h
-    print('Listar data e hora atual e outra data somando 2 min')
+    print('Listar data e hora atual e outra data somando 1 min')
     events_result = service.events().list(calendarId='primary', timeMin=timeMin,
                                         timeMax=timeMax, singleEvents=True,
                                         orderBy='startTime').execute()
