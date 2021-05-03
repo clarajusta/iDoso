@@ -17,7 +17,7 @@ result = service.events().list(calendarId=calendar_id, timeZone='America/Sao_Pau
 #criando evento
 from datetime import datetime, timedelta
 start_time = datetime(2021, 5, 5, 20, 0, 0) #ano, mês, data, hora, minuto, segundo #aqui terão que ser strings
-end_time=start_time + timedelta(hours=4) #acho que aqui é duração
+end_time=start_time + timedelta(hours=4) #duracao
 timezone = 'America/Sao_Paulo'
 event = {
   'summary': 'Primeiro evento com codigo!',
