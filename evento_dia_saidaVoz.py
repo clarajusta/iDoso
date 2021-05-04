@@ -107,8 +107,15 @@ def get_date(text):
     if month < today.month and month != -1:
         year=year+1
 
-    if day < today.day and month == -1 and day != 1: #se o usario nao falar mes e dia da semana, so a data
-        month = month + 1
+    #if day < today.day and month == -1 and day != 1: #se o usario nao falar mes e dia da semana, so a data
+    #    month = month + 1
+    #corrigindo quando nao foi dito o mes, cmente a data
+    if month == -1 and day != -1:
+        if day < today.day:
+            month = today.month + 1
+        else:
+            month = today.month
+
 
     if month == -1 and day == -1 and day_of_week != -1: #se so falarmos dia da semana "segunda", Terca..
         current_day_of_week = today.weekday() #obter data de hoje
