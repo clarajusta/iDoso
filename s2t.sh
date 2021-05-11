@@ -1,7 +1,12 @@
+
 #!/bin/bash
 
 
 #!/bin/bash
+
+echo "Escutando..."
+arecord out.wav -f S16_LE -r 16000 -d 5
+echo "Processando..."
 
 if [ $# -lt 3 ]
 then
@@ -35,9 +40,29 @@ case ${3} in
 	1) LANG="pt-BR";;
 	2) LANG="en-US";;
 esac
-REQUEST="client=${CLIENT}&lang=${LANG}&key=${KEY}&pFilter=${PFILTER}"
+REQUEST="client=${CLIENT}&lang=${LANG}&key=${KEY}&pFilter=${PFILTER}" 
 FULL_URL="${URL}?${REQUEST}"
 curl "${FULL_URL}" \
 	-A ${USERAGENT} \
 	--data-binary "@${FILE}" \
-	-H "Content-Type: audio/${TYPE}; rate=${RATE};"
+	-H "Content-Type: audio/${TYPE}; rate=${RATE};" > stt.JSON
+
+
+value=($(jq -r '.result' stt.JSON))
+
+if [ "$value" == [] ]
+then
+	sed -i '1d' stt.JSON
+fi
+
+cat stt.JSON | jq '.result[0] .alternative[0] .transcript' > frase_ouvida.JSON
+
+if [ -s frase_ouvida.JSON ]
+then
+	echo stt.JSON | grep -Po "(?<=transcript:).*(?=confidence)"
+else
+	echo "ainda  é nulo"
+	echo "..." > frase_ouvida.JSON 	
+fi
+echo "Você disse: "
+cat frase_ouvida.JSON

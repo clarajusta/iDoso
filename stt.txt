@@ -1,0 +1,2 @@
+{"result":[]}
+{"result":[{"alternative":[{"transcript":"Esse é o primeiro teste cachorro gato","confidence":0.96170533},{"transcript":"Esse é o primeiro teste cachorro e gato"},{"transcript":"Esse é o primeiro teste em cachorro gato"},{"transcript":"e esse é o primeiro teste cachorro gato"},{"transcript":"e esse é o primeiro teste cachorro e gato"}],"final":true}],"result_index":0}
