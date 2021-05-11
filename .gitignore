@@ -9,3 +9,5 @@ credenciais.py
 *.pyc
 *.pkl
 *.json
+*.mod
+*.sum
