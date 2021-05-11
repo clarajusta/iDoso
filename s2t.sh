@@ -4,9 +4,7 @@
 
 #!/bin/bash
 
-echo "Escutando..."
 arecord out.wav -f S16_LE -r 16000 -d 5
-echo "Processando..."
 
 if [ $# -lt 3 ]
 then
@@ -61,7 +59,6 @@ if [ -s frase_ouvida.JSON ]
 then
 	echo stt.JSON | grep -Po "(?<=transcript:).*(?=confidence)"
 else
-	echo "ainda  é nulo"
 	echo "..." > frase_ouvida.JSON 	
 fi
 echo "Você disse: "

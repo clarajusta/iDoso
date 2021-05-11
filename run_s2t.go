@@ -14,6 +14,33 @@ func upper(data string) string {
 }
 
 func main() {
+    for{
+        fmt.Println("Escutando...")
+        cmd := exec.Command("/bin/bash", "s2t.sh", "out.wav", "16000", "1")
+    
+        stdout, err := cmd.StdoutPipe()
+    
+        if err != nil {
+            log.Fatal(err)
+        }
+    
+        if err := cmd.Start(); err != nil {
+            log.Fatal(err)
+        }
+    
+        data, err := ioutil.ReadAll(stdout)
+    
+        if err != nil {
+            log.Fatal(err)
+        }
+    
+        if err := cmd.Wait(); err != nil {
+            log.Fatal(err)
+        }
+    
+        fmt.Printf("%s\n", upper(string(data)))
+    }
+    fmt.Println("Escutando...")
     cmd := exec.Command("/bin/bash", "s2t.sh", "out.wav", "16000", "1")
 
     stdout, err := cmd.StdoutPipe()
