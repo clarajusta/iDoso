@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
@@ -77,7 +76,7 @@ func main() {
 	}
 
 	// If modifying these scopes, delete your previously saved token.json.
-	config, err := google.ConfigFromJSON(b, calendar.CalendarReadonlyScope)
+	config, err := google.ConfigFromJSON(b, calendar.CalendarScope)
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
@@ -88,22 +87,27 @@ func main() {
 		log.Fatalf("Unable to retrieve Calendar client: %v", err)
 	}
 
-	t := time.Now().Format(time.RFC3339)
-	events, err := srv.Events.List("primary").ShowDeleted(false).
-		SingleEvents(true).TimeMin(t).MaxResults(10).OrderBy("startTime").Do()
+	//t := time.Now().Format(time.RFC3339)
+	//events, err := srv.Events.List("primary").ShowDeleted(false).
+	event := &calendar.Event{
+		Summary:     "Google I/O 2015",
+		Location:    "800 Howard St., San Francisco, CA 94103",
+		Description: "A chance to hear more about Google's developer products.",
+		Start: &calendar.EventDateTime{
+			DateTime: "2015-05-28T09:00:00-07:00",
+			TimeZone: "America/Los_Angeles",
+		},
+		End: &calendar.EventDateTime{
+			DateTime: "2015-05-28T17:00:00-07:00",
+			TimeZone: "America/Los_Angeles",
+		},
+		Recurrence: []string{"RRULE:FREQ=DAILY;COUNT=2"},
+	}
+
+	calendarId := "primary"
+	event, err = srv.Events.Insert(calendarId, event).Do()
 	if err != nil {
-		log.Fatalf("Unable to retrieve next ten of the user's events: %v", err)
+		log.Fatalf("Unable to create event. %v\n", err)
 	}
-	fmt.Println("Upcoming events:")
-	if len(events.Items) == 0 {
-		fmt.Println("No upcoming events found.")
-	} else {
-		for _, item := range events.Items {
-			date := item.Start.DateTime
-			if date == "" {
-				date = item.Start.Date
-			}
-			fmt.Printf("%v (%v)\n", item.Summary, date)
-		}
-	}
+	fmt.Printf("Event created: %s\n", event.HtmlLink)
 }
