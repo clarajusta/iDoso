@@ -4,7 +4,7 @@
 
 #!/bin/bash
 
-arecord out.wav -f S16_LE -r 16000 -d 5
+arecord out.wav -f S16_LE -r 16000 -d 4
 
 if [ $# -lt 3 ]
 then
