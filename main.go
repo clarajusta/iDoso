@@ -134,13 +134,21 @@ func funcLoop(comando string) {
 		fmt.Println(string(out))
 		exec.Command("/bin/bash", "speech.sh", string(out)).Output()
 	}
-	//pARA PEGAR TEMPERATURA: curl -H "Accept-Language: pt-br" wttr.in/Lago+Sul?format="%C+%t"
+	if strings.Contains(comando, "EMERGÊNCIA"){
+		exec.Command("/bin/bash", "speech.sh", "Enviando mensagem para seu contato de emergência!").Output()
+		fmt.Println("+___EMERGÊNCIA ATIVADA___+")
+		fmt.Println("Enviando mensagem para seu contato de emergência!!")
+		exec.Command("/bin/bash", "send-sms.sh",).Output()
+	}
+	if strings.Contains(comando, "QUEM É VOCÊ"){
+		exec.Command("/bin/bash", "speech.sh", "Me chamo Mara, sou sua assistente pessoal e estou aqui para te ajudar com o que puder!").Output()
+		fmt.Println("(' v')/ Oi, me eu sou a Mara!")
+	}
 	main()
 }
 
 func calendarLoop(comando string){
 	fmt.Println("Executando função", comando)
 	fmt.Println("Função do calendário!![#]")
-	mara = false
 	main()
 }

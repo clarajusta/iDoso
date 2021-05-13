@@ -1,4 +1,5 @@
 #!/bin/bash
+
 LOCAL_TOTAL=$(curl -s -H "Accept-Language: pt-br" wttr.in/?format="%l")
 LOCAL="${LOCAL_TOTAL%%,*}"
 

@@ -11,3 +11,6 @@ credenciais.py
 *.json
 *.mod
 *.sum
+twilio.sh
+twilio.conf
+send-sms.sh
