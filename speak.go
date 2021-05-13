@@ -1,9 +1,19 @@
 package main
 
-import "github.com/hegedustibor/htgo-tts"
+import (
+    "fmt"
+    "log"
+    "os/exec"
+)
 
 func main() {
-    speech := htgotts.Speech{Folder: "audio", Language: "pt-BR"}
-    speech.Speak("Eu quero só passar nessa desgraça. É uma matéria tão legal mas agora já deu")
+
+    out, err := exec.Command("/bin/bash", "weather.sh").Output()
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(string(out))
+    exec.Command("/bin/bash", "speech.sh", string(out)).Output()
 }
-	

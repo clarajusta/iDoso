@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 	"github.com/goodsign/monday"
+	"github.com/stianeikeland/go-rpio"
 )
 
 var frase string = "..."
@@ -19,9 +20,19 @@ func upper(data string) string {
     return strings.ToUpper(data)
 }
 
-func main() {	
-	for {
+func main() {
 
+	//Inicializando o led
+	err := rpio.Open()
+	if err != nil {
+		panic(fmt.Sprint("Não foi possível conectar com o LED", err.Error()))
+	}
+	defer rpio.Close()
+	pin := rpio.Pin(18)
+	pin.Output()
+
+	// Loop contínuo principal
+	for {
         fmt.Println("Escutando...")
         cmd := exec.Command("/bin/bash", "s2t.sh", "out.wav", "16000", "1")
     
@@ -47,7 +58,31 @@ func main() {
         frase := upper(string(data))
         fmt.Printf("%s\n", frase)
 
+		//Encontrando a palavra-chave MARA -> INICIA ROTINA DE FUNÇÕES
+        matched, err := regexp.MatchString("MARA", frase)
+        if matched{
+			exec.Command("/bin/bash", "speech.sh", "Você me chamou?").Output()
+			mara = true 
+			// Liga o Led (dá sinal de vida)
+			pin.High()
+			// no próximo loop a Mara já vai estar te ouvindo
+            fmt.Println("Chamou? \n     V\n      L('o' )/    \n")
+			fmt.Println("Mara_1: ",mara)
+        }
+		//Encontrando a palavra-chave OK -> VOLTA A FICAR SÓ ESCUTANDO
+        if strings.Contains(frase, "OK"){
+			exec.Command("/bin/bash", "speech.sh", "Ok, qualquer coisa é só chamar!").Output()
+			mara = false
+			// Desliga o led
+			pin.Low()
+			// no próximo loop a Mara já vai estar te ouvindo
+            fmt.Println("Ok... \n     V\n      _(-.-)_    \n")
+			fmt.Println("Mara_1: ",mara)
+        }
+
+		// Rotina da Mara ----
 		if mara{
+			// Liga o led (dá sinal de vida)
 			if strings.Contains(frase, "LEMBRETE"){
 				fmt.Println("Indo para a função do lembrete\n")
 				calendarLoop(frase)
@@ -57,17 +92,10 @@ func main() {
 				funcLoop(frase)
 				break				
 			}
-
+		}else{
+			// Desliga o led  caso ele esteja ligado
+			pin.Low()
 		}
-
-		//Encontrando a palavra-chave MARA
-        matched, err := regexp.MatchString("MARA", frase)
-        if matched{
-			exec.Command("/bin/bash", "speech.sh", "Você me chamou?").Output()
-			mara = true
-            fmt.Println("Chamou? \n     V\n      L('o' )/    \n")
-			fmt.Println("Mara_1: ",mara)
-        }
 		
     }
 }
@@ -84,7 +112,7 @@ func funcLoop(comando string) {
 	}
 	if strings.Contains(comando, "HORAS SÃO"){
 		data := time.Now()
-		data_en := "Agora são 15:04 do dia 2. de January de 2006"
+		data_en := "Agora são 15:04"
 		data_PtBR := monday.Format(data, data_en,monday.LocalePtBR)
 		exec.Command("/bin/bash", "speech.sh", data_PtBR).Output()
 		fmt.Println(data_PtBR)
@@ -96,7 +124,17 @@ func funcLoop(comando string) {
 		exec.Command("/bin/bash", "speech.sh", data_PtBR).Output()
 		fmt.Println(data_PtBR)
 	}
-	mara = false
+	if (strings.Contains(comando, "TEMPERATURA")||strings.Contains(comando, "CLIMA")){
+		out, err := exec.Command("/bin/bash", "weather.sh").Output()
+
+		if err != nil {
+			log.Fatal(err)
+		}
+	
+		fmt.Println(string(out))
+		exec.Command("/bin/bash", "speech.sh", string(out)).Output()
+	}
+	//pARA PEGAR TEMPERATURA: curl -H "Accept-Language: pt-br" wttr.in/Lago+Sul?format="%C+%t"
 	main()
 }
 
