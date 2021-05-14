@@ -85,7 +85,7 @@ func main() {
 			// Liga o led (dá sinal de vida)
 			if strings.Contains(frase, "LEMBRETE"){
 				fmt.Println("Indo para a função do lembrete\n")
-				calendarLoop(frase)
+				//calendarLoop(frase)
 				break
 			} else{
 				fmt.Printf("indo para a funcao geral\n")
@@ -144,11 +144,32 @@ func funcLoop(comando string) {
 		exec.Command("/bin/bash", "speech.sh", "Me chamo Mara, sou sua assistente pessoal e estou aqui para te ajudar com o que puder!").Output()
 		fmt.Println("(' v')/ Oi, me eu sou a Mara!")
 	}
-	main()
-}
+	// Clara: rotina de criação de evento/lembrete:
+	if (strings.Contains(comando, "CRIAR")&&(strings.Contains(comando, "EVENTO")||strings.Contains(comando, "LEMBRETE"))){
+		
+		//Colocar aqui a função de listar os eventos a partir da string "comando"
+		//
+		
+	}
+	// Clara: rotina listagem dos eventos/lembretes do dia
+	if strings.Contains(comando, "EVENTO"){
+		if strings.Contains(comando, "HOJE"){
+			//Pegar o dia de hoje
+			data := time.Now()
+			fmt.Println(data)
+		}else if strings.Contains(comando, "DIA"){
+			//Encontrar números na string
+			//entrada = re,FindAllString(comando)
+			entrada := strings.ToLower(comando) //-> deixa tudo em minusculo
+			ss := strings.Split(entrada, "dia")
+			s := ss[len(ss)-1] // corta logo após o "dia" -> exemplo: " 21 De Janeiro"
+			fmt.Println(s)
 
-func calendarLoop(comando string){
-	fmt.Println("Executando função", comando)
-	fmt.Println("Função do calendário!![#]")
+			//Colocar aqui a função de listar os eventos a partir da string "s"
+			//
+
+		}
+
+	}
 	main()
 }
